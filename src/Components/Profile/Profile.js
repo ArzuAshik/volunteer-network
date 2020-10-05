@@ -7,7 +7,9 @@ const Profile = () => {
   const [loginUser, setLoginUser] = useContext(userContext);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/userEvent/${loginUser.email}`)
+    fetch(
+      `https://ar-volunteer-network-server.herokuapp.com/userEvent/${loginUser.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);

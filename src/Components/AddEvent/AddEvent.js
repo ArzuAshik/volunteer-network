@@ -20,7 +20,7 @@ const AddEvent = () => {
       </div>
       <div className="col-9 bg-light py-5">
         <form
-          action="http://localhost:4000/addEvent"
+          action="https://ar-volunteer-network-server.herokuapp.com/addEvent"
           method="POST"
           target="_blank"
           className="bg-white py-4 px-2 rounded"

@@ -32,12 +32,12 @@ function App() {
             <PrivateRoute path="/register/:id">
               <Register />
             </PrivateRoute>
-            <Route path="/admin/addEvent">
+            <PrivateRoute path="/admin/addEvent">
               <AddEvent />
-            </Route>
-            <Route path="/admin">
+            </PrivateRoute>
+            <PrivateRoute path="/admin">
               <Admin />
-            </Route>
+            </PrivateRoute>
             <PrivateRoute path="/profile">
               <Profile />
             </PrivateRoute>

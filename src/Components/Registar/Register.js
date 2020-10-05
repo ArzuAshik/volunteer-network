@@ -1,28 +1,57 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { userContext } from "../../App";
 
 const Register = () => {
+  let history = useHistory();
   const { id } = useParams();
+  const [loginUser, setLoginUser] = useContext(userContext);
   const [event, setEvent] = useState({});
+  const [formInput, setFormInput] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:4000/singleEvent/${id}`)
+    fetch(`https://ar-volunteer-network-server.herokuapp.com/singleEvent/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setEvent(data);
+        setFormInput({
+          name: loginUser.name,
+          email: loginUser.email,
+          eventName: data.name,
+          eventID: data._id,
+        });
       });
   }, []);
 
-  const [loginUser, setLoginUser] = useContext(userContext);
+  const handleFormInput = (e) => {
+    const newInput = { ...formInput };
+    newInput[e.target.name] = e.target.value;
+    setFormInput(newInput);
+  };
+
+  const handleSubmit = (e) => {
+    if (formInput.date) {
+      fetch("https://ar-volunteer-network-server.herokuapp.com/registerEvent", {
+        method: "POST",
+        body: JSON.stringify(formInput),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          history.push("/profile");
+        })
+        .catch((error) => console.log(error));
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="w-50 mx-auto mt-5 border border-secondary p-5">
       <h2 className="my-4">Register as a volunteer</h2>
-      <form
-        action="http://localhost:4000/registerEvent"
-        method="POST"
-        target="_blank"
-      >
+      <form onSubmit={handleSubmit}>
         <input
           readOnly
           className="form-control-plaintext border-bottom my-3"
@@ -45,12 +74,14 @@ const Register = () => {
           type="date"
           placeholder="Date"
           name="date"
+          onBlur={handleFormInput}
         />
         <input
           className="form-control-plaintext border-bottom my-3"
           type="text"
           placeholder="Description"
           name="description"
+          onBlur={handleFormInput}
         />
         <input
           readOnly

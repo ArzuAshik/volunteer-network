@@ -6,7 +6,9 @@ const ProfileEvent = (props) => {
   const [eventImg, setEventImg] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:4000/singleEvent/${event.eventID}`)
+    fetch(
+      `https://ar-volunteer-network-server.herokuapp.com/singleEvent/${event.eventID}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setEventImg(data.img);
@@ -15,7 +17,9 @@ const ProfileEvent = (props) => {
   }, []);
 
   const deleteVolunteer = (id) => {
-    fetch(`http://localhost:4000/deleteVolunteer/${id}`).then(() => {
+    fetch(
+      `https://ar-volunteer-network-server.herokuapp.com/deleteVolunteer/${id}`
+    ).then(() => {
       console.log("successful");
     });
   };

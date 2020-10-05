@@ -6,13 +6,15 @@ const Admin = () => {
   const [volunteerList, setVolunteerList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/admin")
+    fetch("https://ar-volunteer-network-server.herokuapp.com/admin")
       .then((res) => res.json())
       .then((data) => setVolunteerList(data));
   }, []);
 
   const deleteVolunteer = (id) => {
-    fetch(`http://localhost:4000/deleteVolunteer/${id}`).then(() => {
+    fetch(
+      `https://ar-volunteer-network-server.herokuapp.com/deleteVolunteer/${id}`
+    ).then(() => {
       console.log("successful");
     });
   };
