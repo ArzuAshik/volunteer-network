@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Events = ({ event }) => {
   return (
-    <div className="col-md-3 col-sm-6 mt-5">
+    <div className="col-md-3 col-sm-6 mt-5" style={{ minHeight: "270px" }}>
       <div
         className="card position-relative border-0"
         style={{ width: "100%" }}

@@ -33,7 +33,6 @@ const Login = () => {
       .signInWithPopup(googleProvider)
       .then(function (result) {
         var user = result.user;
-        console.log(user.displayName, user.email);
         setLoginUser({ name: user.displayName, email: user.email });
         history.replace(from);
       })
