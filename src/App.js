@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import "./App.css";
+import AddEvent from "./Components/AddEvent/AddEvent";
+import Admin from "./Components/Admin/Admin";
+import Footer from "./Components/Footer/Footer";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login";
+import Navbar from "./Components/Navbar/Navbar";
+import NotFound from "./Components/NotFound/NotFound";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Profile from "./Components/Profile/Profile";
+import Register from "./Components/Registar/Register";
+
+export const userContext = createContext();
 
 function App() {
+  const [loginUser, setLoginUser] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <userContext.Provider value={[loginUser, setLoginUser]}>
+      <Router>
+        <div className="container flex-grow-1">
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/register/:id">
+              <Register />
+            </PrivateRoute>
+            <Route path="/admin/addEvent">
+              <AddEvent />
+            </Route>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+            <PrivateRoute path="/profile">
+              <Profile />
+            </PrivateRoute>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
+    </userContext.Provider>
   );
 }
 
