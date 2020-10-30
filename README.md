@@ -6,8 +6,8 @@
 
 ---
 
-Volunteer Network is a Full Stack Volunteer Management Site. A User can register any volunteer event. To register for a volunteer service user needs to login with Google. After registering a volunteer service user can see his/her registered volunteer service list.
-An Admin can remove any volunteer anytime. Admin can also add new volunteer event.
+Volunteer Network is a Full Stack Volunteer Management Site. A User can register for any volunteer event. To register for a volunteer service user needs to login with Google. After registering, a volunteer service user can see his/her registered volunteer service list.
+An Admin can remove any volunteer anytime. Admin can also add a new volunteer event.
 
 ---
 
@@ -28,7 +28,7 @@ An Admin can remove any volunteer anytime. Admin can also add new volunteer even
 - Register for any volunteer service
 - Search option for volunteer service.
 - Registered volunteers list for admin
-- Add new volunteer event option for the admin
+- Add a new volunteer event option for the admin
 - Google Login
 - Remove a volunteer option for the admin
 
